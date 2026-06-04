@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="stylesheet" href="/Styles/registration.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous">
+        </script>
+</head>
+
+<body>
+
+    <div class="form-box">
+        <h2>📚 Library Registration</h2>
+
+        <div class="form-group">
+            <label>👤 User Name</label>
+            <input type="text" name="fullName" id="userName" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>🎂 Date of Birth</label>
+            <input type="date" name="dob" class="form-control" id="dob" required>
+        </div>
+
+        <div class="form-group">
+            <label>⚧️ Gender</label>
+            <select name="gender" class="form-control" id="gender">
+                <option>Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>📱 Mobile Number</label>
+            <input type="text" name="mobile" class="form-control" maxlength="10" id="number" required>
+        </div>
+
+        <div class="form-group">
+            <label>📧 Email</label>
+            <input type="email" name="email" class="form-control" id="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>🪪 Membership Type</label>
+            <select name="membership" class="form-control" id="membership">
+                <option>Select</option>
+                <option>Monthly</option>
+                <option>Quarterly</option>
+                <option>Half-Yearly</option>
+                <option>Yearly</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="password-wrapper">
+                <label>🔒 Password</label>
+                <input type="password" name="passwords" id="password"
+                    class="form-control" required>
+                <img src="/images/eye open.png" id="togglePassword" class="eye-icon" />
+            </div>
+        </div>
+
+
+        <!-- <div class="form-group">
+            <label>📅Current Date</label>
+            <input type="date" name="date" class="form-control" required>
+        </div> -->
+
+        <div class="form-group">
+            <button type="submit" id="submit" class="btn btn-primary w-100" onclick="submitClick()">Submit</button>
+        </div>
+
+        <div class="footer">
+            © Library Management System
+        </div>
+
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById("password");
+        const mobileInput = document.getElementById("number");
+        const togglePassword = document.getElementById("togglePassword");
+
+        // Toggle show/hide & change eye icon
+        togglePassword.addEventListener("click", () => {
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                togglePassword.src = "/images/eye close.png";
+            } else {
+                passwordInput.type = "password";
+                togglePassword.src = "/images/eye open.png";
+            }
+        });
+
+
+        // Allow only digits & max 4 characters
+        passwordInput.addEventListener("input", () => {
+            passwordInput.value = passwordInput.value.replace(/\D/g, '').slice(0, 20);
+        });
+
+        
+        mobileInput.addEventListener("input", () => {
+            mobileInput.value = mobileInput.value.replace(/\D/g, '').slice(0, 10);
+        });
+
+
+        function submitClick() {
+
+            let username = document.getElementById('userName').value;
+            let dob = document.getElementById('dob').value;
+            let gender = document.getElementById('gender').value;
+            let number = document.getElementById('number').value;
+            let email = document.getElementById('email').value;
+            let membership = document.getElementById('membership').value;
+            let password = document.getElementById('password').value;
+
+
+            if (username.length <3) {
+                alert("Minimum 3 letters required");
+                return;
+            }
+         
+            if (number.length < 6 &&  number.length > 20) {
+                alert("Must be between 6 and 20 characters.");
+                return;
+            }
+
+            const birthDate = new Date(dob);
+            const today = new Date();
+
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const m = today.getMonth() - birthDate.getMonth();
+
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            if (age < 18) {
+                alert("Client must be at least 18 years old");
+                return;
+            }
+
+            const userData = { fullName: username, dob: dob, gender: gender, mobile: number, email: email, membership: membership, passwords: password }
+
+            $.ajax({
+                url: '/registration',
+                type: 'Post',
+                data: userData,
+                datatype: 'json',
+                contenttype: "application/json",
+                success: function (result) {
+                    if (result == 'success') {
+                        alert('registration successfull')
+                        window.location.href = "/libraryloginURL";
+
+                    } else if (result == 'existing') {
+                        alert('given mail or phone is registered already')
+                    } else {
+                        alert('registration failed')
+                    }
+                }
+            })
+        }
+
+
+    </script>
+
+</body>
+
+</html>
