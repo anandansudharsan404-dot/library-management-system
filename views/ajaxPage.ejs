@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.1.1.js"
+        integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
+    <title>Ajax Page</title>
+</head>
+
+<body>
+    <h1>This is ajax function page</h1>
+    <button onclick="handleClick()">Click Me</button>
+</body>
+<script>
+    function handleClick() {
+        $.ajax({
+            url: '/ajaxPage',
+            type: 'Post',
+            success: function (result) {
+                if (result == 'success') {
+                    alert('registration successfull')
+                } else {
+                    alert('registration failed')
+                }
+            }
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,56 @@
+    h2{
+         background-color: #ff8faf;
+         text-align: center;
+         padding: 20px 0;
+    }
+    
+    
+    .list-view {
+        display: flex;
+        flex-direction: column;
+        gap: 20px; /* spacing between cards */
+    }
+
+    .list-view .book-item {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .list-view .card {
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .list-view img {
+        width: 150px;
+        height: 150px;
+        margin-right: 20px;
+        object-fit: cover;
+    }
+
+    .list-view .card-body {
+        text-align: left;
+        width: 100%;
+    }
+.rating {
+    font-size: 22px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.rating span {
+    color: #ccc; /* default gray */
+}
+
+.rating .active {
+    color: gold; /* highlighted stars */
+}
+.pin-btn {
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

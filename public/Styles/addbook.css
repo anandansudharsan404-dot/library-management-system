@@ -1,0 +1,93 @@
+/* Page Centering */
+body {
+    margin: 0;
+    padding: 0;
+    background: #ffe5ec;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Card Box */
+.form-box {
+    background: #ff8faf;
+    width: 400px;
+    padding: 35px 40px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+/* Title */
+.form-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: maroon;
+}
+
+/* GROUP WRAPPER */
+.form-group {
+    margin-bottom: 18px;
+}
+
+/* Label */
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+/* Inputs */
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 15px;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    outline: none;
+    background: #fafafa;
+    transition: 0.2s ease;
+}
+
+/* Focus Effect */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #4a90e2;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(74,144,226,0.3);
+}
+
+/* Button */
+.submit-btn {
+    width: 100%;
+    padding: 12px;
+    background: #4a90e2;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.submit-btn:hover {
+    background: #357ac9;
+}
+
+.footer {
+      margin-top: 15px;
+      font-size: 16px;
+      color: white;
+      text-align: center;
+    }
+
+#authorBox {
+  display: none; 
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add book</title>
+    <link rel="stylesheet" href="/Styles/addbook.css">
+</head>
+
+<body>
+<div class="container">
+  <div class="form-box">
+    <h2 class="form-title">📖Add New Book</h2>
+
+    <form action="/addbook" method="post">
+
+      <div class="form-group">
+        <label>📘Book Title</label>
+        <input type="text" name="title" required>
+      </div>
+
+
+      <div class="form-group">
+        <label>📚Category</label>
+        <select name="category"  id="category" required>
+          <option value="">Select Category</option>
+          <option value="Education">Education</option>
+          <option value="Fiction">Fiction</option>
+          <option value="SkillDevelopment">Skill Development</option>
+          <option value="CompetitiveExams">Competitive Exams</option>
+          <option value="References">References</option>
+          <option value="ArtsLifestyle">Arts & Lifestyle</option>
+          <option value="ChildrenTeens">Children & Teens</option>
+          <option value="NonFiction">Non-Fiction</option>
+        </select>
+      </div>
+
+       <div class="form-group" id="authorBox">
+        <label>📝Author</label>
+        <input type="text" name="author">
+      </div>
+
+      <div class="form-group">
+        <label>🖼️Cover Image URL</label>
+        <input type="text" name="cover" placeholder="https://example.com/image" required>
+      </div>
+
+      <button type="submit" class="submit-btn">Add Book</button>
+
+    </form>
+    <div class="footer">
+        © Library Management System
+      </div>
+  </div>
+</div>
+<script>
+
+  const categorySelect = document.getElementById("category");
+  const authorBox = document.getElementById("authorBox");
+
+  categorySelect.addEventListener("change", function() {
+    // Show Author only for specific categories:
+    const showFor = [
+      "Fiction",
+      "Non-Fiction",
+      "SkillDevelopment",
+      "ChildrenTeens",
+      "References"
+    ];
+
+    if (showFor.includes(this.value)) {
+      authorBox.style.display = "block";
+    } else {
+      authorBox.style.display = "none";
+    }
+  });
+
+</script>
+</body>
+</html>
